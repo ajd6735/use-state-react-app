@@ -9,10 +9,12 @@ function App() {
     color: "#fff"
   }
   const [step, setStep] = useState(1);
-  // const [isOpen, setIsOpen] useState(true);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className='steps'>
+    <>
+    <button className='close' onClick={() => setIsOpen((isOpen: unknown) => (!isOpen))}>&times;</button>
+    {isOpen && <div className='steps'>
       <div className='numbers'>
         <div className={step >= 1 ? `active` : ""}>1</div>
         <div className={step >= 2 ? `active` : ""}>2</div>
@@ -22,10 +24,11 @@ function App() {
         Step {step}: {messages[step -1]}
       </p>
       <div className='buttons'>
-        <button style={btnStyle} onClick={() => {if(step > 1) setStep(step -1)}}>Previous</button>
-        <button style={btnStyle} onClick={() => {if(step < 3) setStep(step + 1)}}>Next</button>
+        <button style={btnStyle} onClick={() => {if(step > 1) setStep(s => s - 1)}}>Previous</button>
+        <button style={btnStyle} onClick={() => {if(step < 3) setStep(s => s + 1)}}>Next</button>
       </div>
-    </div>
+    </div>}
+    </>
   )
 }
 
